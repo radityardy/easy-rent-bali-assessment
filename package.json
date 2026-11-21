@@ -1,0 +1,16 @@
+{
+  "name": "easy-rent-bali-assessment",
+  "version": "1.0.0",
+  "description": "Easy Rent Bali - Concurrency Triage & Idempotent Checkout API Patch",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test:concurrency": "tsx src/patch/test_concurrency.ts"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "@types/node": "^22.10.0"
+  }
+}
