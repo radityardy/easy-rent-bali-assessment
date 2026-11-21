@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test:concurrency": "tsx src/patch/test_concurrency.ts"
+    "test:concurrency": "tsx src/patch/test_concurrency.ts",
+    "engine:run": "tsx src/engine/dispatcher.ts"
   },
   "devDependencies": {
     "tsx": "^4.19.2",

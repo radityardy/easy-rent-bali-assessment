@@ -1,0 +1,641 @@
+{
+  "reconciliation_id": "recon_e1aafe93",
+  "generated_at": "2026-11-21T03:45:29.520Z",
+  "source_telemetry_file": "data/outage_telemetry.json",
+  "engine_config": {
+    "thresholds": {
+      "OFFLINE_SILENT_THRESHOLD_SECONDS": 900,
+      "LOW_BATTERY_VOLTAGE_THRESHOLD": 11.5,
+      "LOW_FUEL_PERCENT_THRESHOLD": 15,
+      "RESTRICTED_ZONE_KEYWORD": "RESTRICTED"
+    },
+    "dispatcher": {
+      "packet_loss_rate": 0.18,
+      "max_retries": 5,
+      "backoff_strategy": "exponential_backoff_full_jitter",
+      "base_delay_ms": 100,
+      "max_delay_ms": 3200
+    }
+  },
+  "summary": {
+    "total_vehicles_scanned": 8,
+    "healthy_vehicles_count": 2,
+    "flagged_vehicles_count": 6,
+    "multi_flag_vehicles_count": 0,
+    "incidents_by_flag": {
+      "CRITICAL_SECURITY_ALERT": 2,
+      "OFFLINE_TELEMETRY_DROP": 1,
+      "MAINTENANCE_REQUIRED": 3
+    },
+    "incidents_by_severity": {
+      "CRITICAL": 2,
+      "HIGH": 1,
+      "MEDIUM": 3
+    },
+    "dispatch_stats": {
+      "total_alerts": 6,
+      "delivered_count": 6,
+      "dead_lettered_count": 0,
+      "total_transmission_attempts": 8,
+      "total_transient_failures": 2,
+      "observed_packet_loss_rate": 0.25
+    }
+  },
+  "healthy_vehicles": [
+    {
+      "device_id": "iot_car_01",
+      "plate": "DK 1234 AB",
+      "model": "Toyota Avanza",
+      "status": "rented",
+      "zone": "CANGGU",
+      "gateway_id": "gw_kuta_01"
+    },
+    {
+      "device_id": "iot_car_07",
+      "plate": "DK 6789 MN",
+      "model": "Daihatsu Xenia",
+      "status": "available",
+      "zone": "KUTA_HUB",
+      "gateway_id": "gw_kuta_01"
+    }
+  ],
+  "reconciled_incidents": [
+    {
+      "incident": {
+        "incident_id": "inc_iot_car_02_cri",
+        "device_id": "iot_car_02",
+        "plate": "DK 5678 CD",
+        "model": "Mitsubishi Xpander",
+        "status": "available",
+        "gateway_id": "gw_kuta_01",
+        "zone": "KUTA_HUB",
+        "flags": [
+          "CRITICAL_SECURITY_ALERT"
+        ],
+        "highest_severity": "CRITICAL",
+        "triggers": [
+          {
+            "flag": "CRITICAL_SECURITY_ALERT",
+            "severity": "CRITICAL",
+            "rule": "AVAILABLE_VEHICLE_IN_MOTION",
+            "detail": "Unrented (available) vehicle DK 5678 CD is moving at 52 km/h in zone KUTA_HUB.",
+            "recommended_action": "Verify unauthorized movement immediately, alert Kuta Hub security, and prepare remote immobilizer check."
+          }
+        ],
+        "telemetry_snapshot": {
+          "current_speed_kmh": 52,
+          "battery_voltage": 12.8,
+          "fuel_percent": 82,
+          "last_ping_seconds_ago": 20
+        },
+        "detected_at": "2026-11-21T03:45:29.282Z"
+      },
+      "alert_payload": {
+        "schema_version": "1.0",
+        "alert_id": "alrt_bb45528b",
+        "idempotency_key": "dispatch:inc_iot_car_02_cri:CRITICAL_SECURITY_ALERT",
+        "timestamp": "2026-11-21T03:45:29.282Z",
+        "severity": "CRITICAL",
+        "flags": [
+          "CRITICAL_SECURITY_ALERT"
+        ],
+        "routing_channels": [
+          "pagerduty-security-p1",
+          "whatsapp-kuta-hub-security"
+        ],
+        "summary": "[CRITICAL] DK 5678 CD (Mitsubishi Xpander) — CRITICAL_SECURITY_ALERT (AVAILABLE_VEHICLE_IN_MOTION)",
+        "vehicle": {
+          "device_id": "iot_car_02",
+          "plate": "DK 5678 CD",
+          "model": "Mitsubishi Xpander",
+          "status": "available",
+          "gateway_id": "gw_kuta_01",
+          "zone": "KUTA_HUB"
+        },
+        "telemetry": {
+          "current_speed_kmh": 52,
+          "battery_voltage": 12.8,
+          "fuel_percent": 82,
+          "last_ping_seconds_ago": 20
+        },
+        "triggers": [
+          {
+            "flag": "CRITICAL_SECURITY_ALERT",
+            "severity": "CRITICAL",
+            "rule": "AVAILABLE_VEHICLE_IN_MOTION",
+            "detail": "Unrented (available) vehicle DK 5678 CD is moving at 52 km/h in zone KUTA_HUB.",
+            "recommended_action": "Verify unauthorized movement immediately, alert Kuta Hub security, and prepare remote immobilizer check."
+          }
+        ],
+        "recommended_actions": [
+          "Verify unauthorized movement immediately, alert Kuta Hub security, and prepare remote immobilizer check."
+        ]
+      },
+      "dispatch_result": {
+        "alert_id": "alrt_bb45528b",
+        "incident_id": "inc_iot_car_02_cri",
+        "device_id": "iot_car_02",
+        "idempotency_key": "dispatch:inc_iot_car_02_cri:CRITICAL_SECURITY_ALERT",
+        "status": "DELIVERED",
+        "attempts_made": 1,
+        "retries_performed": 0,
+        "total_backoff_ms": 0,
+        "delivered_at": "2026-11-21T03:45:29.295Z",
+        "attempt_history": [
+          {
+            "attempt": 1,
+            "timestamp": "2026-11-21T03:45:29.295Z",
+            "outcome": "DELIVERED",
+            "http_status": 202
+          }
+        ]
+      }
+    },
+    {
+      "incident": {
+        "incident_id": "inc_iot_car_05_cri",
+        "device_id": "iot_car_05",
+        "plate": "DK 7890 IJ",
+        "model": "Toyota Fortuner",
+        "status": "rented",
+        "gateway_id": "gw_kuta_01",
+        "zone": "RESTRICTED_OFFROAD_BATUKARU",
+        "flags": [
+          "CRITICAL_SECURITY_ALERT"
+        ],
+        "highest_severity": "CRITICAL",
+        "triggers": [
+          {
+            "flag": "CRITICAL_SECURITY_ALERT",
+            "severity": "CRITICAL",
+            "rule": "RESTRICTED_GEOFENCE_BREACH",
+            "detail": "Vehicle DK 7890 IJ entered restricted zone 'RESTRICTED_OFFROAD_BATUKARU' at 60 km/h.",
+            "recommended_action": "Contact renter immediately regarding geofence violation and notify operations security team."
+          }
+        ],
+        "telemetry_snapshot": {
+          "current_speed_kmh": 60,
+          "battery_voltage": 12.9,
+          "fuel_percent": 54,
+          "last_ping_seconds_ago": 80
+        },
+        "detected_at": "2026-11-21T03:45:29.282Z"
+      },
+      "alert_payload": {
+        "schema_version": "1.0",
+        "alert_id": "alrt_fa80de62",
+        "idempotency_key": "dispatch:inc_iot_car_05_cri:CRITICAL_SECURITY_ALERT",
+        "timestamp": "2026-11-21T03:45:29.282Z",
+        "severity": "CRITICAL",
+        "flags": [
+          "CRITICAL_SECURITY_ALERT"
+        ],
+        "routing_channels": [
+          "pagerduty-security-p1",
+          "whatsapp-kuta-hub-security"
+        ],
+        "summary": "[CRITICAL] DK 7890 IJ (Toyota Fortuner) — CRITICAL_SECURITY_ALERT (RESTRICTED_GEOFENCE_BREACH)",
+        "vehicle": {
+          "device_id": "iot_car_05",
+          "plate": "DK 7890 IJ",
+          "model": "Toyota Fortuner",
+          "status": "rented",
+          "gateway_id": "gw_kuta_01",
+          "zone": "RESTRICTED_OFFROAD_BATUKARU"
+        },
+        "telemetry": {
+          "current_speed_kmh": 60,
+          "battery_voltage": 12.9,
+          "fuel_percent": 54,
+          "last_ping_seconds_ago": 80
+        },
+        "triggers": [
+          {
+            "flag": "CRITICAL_SECURITY_ALERT",
+            "severity": "CRITICAL",
+            "rule": "RESTRICTED_GEOFENCE_BREACH",
+            "detail": "Vehicle DK 7890 IJ entered restricted zone 'RESTRICTED_OFFROAD_BATUKARU' at 60 km/h.",
+            "recommended_action": "Contact renter immediately regarding geofence violation and notify operations security team."
+          }
+        ],
+        "recommended_actions": [
+          "Contact renter immediately regarding geofence violation and notify operations security team."
+        ]
+      },
+      "dispatch_result": {
+        "alert_id": "alrt_fa80de62",
+        "incident_id": "inc_iot_car_05_cri",
+        "device_id": "iot_car_05",
+        "idempotency_key": "dispatch:inc_iot_car_05_cri:CRITICAL_SECURITY_ALERT",
+        "status": "DELIVERED",
+        "attempts_made": 2,
+        "retries_performed": 1,
+        "total_backoff_ms": 12,
+        "delivered_at": "2026-11-21T03:45:29.337Z",
+        "attempt_history": [
+          {
+            "attempt": 1,
+            "timestamp": "2026-11-21T03:45:29.304Z",
+            "outcome": "TRANSIENT_FAILURE",
+            "http_status": 503,
+            "error": "TRANSIENT_PACKET_LOSS: Gateway 'gw_kuta_01' dropped alert packet 'alrt_fa80de62' (18% simulated loss).",
+            "backoff_cap_ms": 100,
+            "jittered_delay_ms": 12
+          },
+          {
+            "attempt": 2,
+            "timestamp": "2026-11-21T03:45:29.337Z",
+            "outcome": "DELIVERED",
+            "http_status": 202
+          }
+        ]
+      }
+    },
+    {
+      "incident": {
+        "incident_id": "inc_iot_car_06_off",
+        "device_id": "iot_car_06",
+        "plate": "DK 2345 KL",
+        "model": "Toyota Raize",
+        "status": "rented",
+        "gateway_id": "gw_kuta_01",
+        "zone": "KUTA_HUB",
+        "flags": [
+          "OFFLINE_TELEMETRY_DROP"
+        ],
+        "highest_severity": "HIGH",
+        "triggers": [
+          {
+            "flag": "OFFLINE_TELEMETRY_DROP",
+            "severity": "HIGH",
+            "rule": "RENTED_TELEMETRY_SILENT_OVER_15M",
+            "detail": "Rented vehicle DK 2345 KL has been silent for 1320s (22 min > 15 min threshold) via gateway 'gw_kuta_01'.",
+            "recommended_action": "Trigger SMS/cellular fallback ping, inspect gateway health, and verify GPS tracker power status."
+          }
+        ],
+        "telemetry_snapshot": {
+          "current_speed_kmh": 0,
+          "battery_voltage": 12.5,
+          "fuel_percent": 88,
+          "last_ping_seconds_ago": 1320
+        },
+        "detected_at": "2026-11-21T03:45:29.282Z"
+      },
+      "alert_payload": {
+        "schema_version": "1.0",
+        "alert_id": "alrt_3b905c04",
+        "idempotency_key": "dispatch:inc_iot_car_06_off:OFFLINE_TELEMETRY_DROP",
+        "timestamp": "2026-11-21T03:45:29.282Z",
+        "severity": "HIGH",
+        "flags": [
+          "OFFLINE_TELEMETRY_DROP"
+        ],
+        "routing_channels": [
+          "slack-fleet-noc",
+          "network-self-healing-queue"
+        ],
+        "summary": "[HIGH] DK 2345 KL (Toyota Raize) — OFFLINE_TELEMETRY_DROP (RENTED_TELEMETRY_SILENT_OVER_15M)",
+        "vehicle": {
+          "device_id": "iot_car_06",
+          "plate": "DK 2345 KL",
+          "model": "Toyota Raize",
+          "status": "rented",
+          "gateway_id": "gw_kuta_01",
+          "zone": "KUTA_HUB"
+        },
+        "telemetry": {
+          "current_speed_kmh": 0,
+          "battery_voltage": 12.5,
+          "fuel_percent": 88,
+          "last_ping_seconds_ago": 1320
+        },
+        "triggers": [
+          {
+            "flag": "OFFLINE_TELEMETRY_DROP",
+            "severity": "HIGH",
+            "rule": "RENTED_TELEMETRY_SILENT_OVER_15M",
+            "detail": "Rented vehicle DK 2345 KL has been silent for 1320s (22 min > 15 min threshold) via gateway 'gw_kuta_01'.",
+            "recommended_action": "Trigger SMS/cellular fallback ping, inspect gateway health, and verify GPS tracker power status."
+          }
+        ],
+        "recommended_actions": [
+          "Trigger SMS/cellular fallback ping, inspect gateway health, and verify GPS tracker power status."
+        ]
+      },
+      "dispatch_result": {
+        "alert_id": "alrt_3b905c04",
+        "incident_id": "inc_iot_car_06_off",
+        "device_id": "iot_car_06",
+        "idempotency_key": "dispatch:inc_iot_car_06_off:OFFLINE_TELEMETRY_DROP",
+        "status": "DELIVERED",
+        "attempts_made": 2,
+        "retries_performed": 1,
+        "total_backoff_ms": 77,
+        "delivered_at": "2026-11-21T03:45:29.454Z",
+        "attempt_history": [
+          {
+            "attempt": 1,
+            "timestamp": "2026-11-21T03:45:29.354Z",
+            "outcome": "TRANSIENT_FAILURE",
+            "http_status": 503,
+            "error": "TRANSIENT_PACKET_LOSS: Gateway 'gw_kuta_01' dropped alert packet 'alrt_3b905c04' (18% simulated loss).",
+            "backoff_cap_ms": 100,
+            "jittered_delay_ms": 77
+          },
+          {
+            "attempt": 2,
+            "timestamp": "2026-11-21T03:45:29.454Z",
+            "outcome": "DELIVERED",
+            "http_status": 202
+          }
+        ]
+      }
+    },
+    {
+      "incident": {
+        "incident_id": "inc_iot_car_03_mai",
+        "device_id": "iot_car_03",
+        "plate": "DK 9012 EF",
+        "model": "Toyota Innova Zenix",
+        "status": "rented",
+        "gateway_id": "gw_kuta_01",
+        "zone": "ULUWATU",
+        "flags": [
+          "MAINTENANCE_REQUIRED"
+        ],
+        "highest_severity": "MEDIUM",
+        "triggers": [
+          {
+            "flag": "MAINTENANCE_REQUIRED",
+            "severity": "MEDIUM",
+            "rule": "LOW_BATTERY_VOLTAGE",
+            "detail": "Vehicle DK 9012 EF battery voltage dropped to 11.2V (threshold < 11.5V).",
+            "recommended_action": "Dispatch mobile roadside technician for battery/alternator inspection before vehicle stalls."
+          }
+        ],
+        "telemetry_snapshot": {
+          "current_speed_kmh": 0,
+          "battery_voltage": 11.2,
+          "fuel_percent": 45,
+          "last_ping_seconds_ago": 55
+        },
+        "detected_at": "2026-11-21T03:45:29.282Z"
+      },
+      "alert_payload": {
+        "schema_version": "1.0",
+        "alert_id": "alrt_dc87e9ee",
+        "idempotency_key": "dispatch:inc_iot_car_03_mai:MAINTENANCE_REQUIRED",
+        "timestamp": "2026-11-21T03:45:29.282Z",
+        "severity": "MEDIUM",
+        "flags": [
+          "MAINTENANCE_REQUIRED"
+        ],
+        "routing_channels": [
+          "ops-fleet-maintenance"
+        ],
+        "summary": "[MEDIUM] DK 9012 EF (Toyota Innova Zenix) — MAINTENANCE_REQUIRED (LOW_BATTERY_VOLTAGE)",
+        "vehicle": {
+          "device_id": "iot_car_03",
+          "plate": "DK 9012 EF",
+          "model": "Toyota Innova Zenix",
+          "status": "rented",
+          "gateway_id": "gw_kuta_01",
+          "zone": "ULUWATU"
+        },
+        "telemetry": {
+          "current_speed_kmh": 0,
+          "battery_voltage": 11.2,
+          "fuel_percent": 45,
+          "last_ping_seconds_ago": 55
+        },
+        "triggers": [
+          {
+            "flag": "MAINTENANCE_REQUIRED",
+            "severity": "MEDIUM",
+            "rule": "LOW_BATTERY_VOLTAGE",
+            "detail": "Vehicle DK 9012 EF battery voltage dropped to 11.2V (threshold < 11.5V).",
+            "recommended_action": "Dispatch mobile roadside technician for battery/alternator inspection before vehicle stalls."
+          }
+        ],
+        "recommended_actions": [
+          "Dispatch mobile roadside technician for battery/alternator inspection before vehicle stalls."
+        ]
+      },
+      "dispatch_result": {
+        "alert_id": "alrt_dc87e9ee",
+        "incident_id": "inc_iot_car_03_mai",
+        "device_id": "iot_car_03",
+        "idempotency_key": "dispatch:inc_iot_car_03_mai:MAINTENANCE_REQUIRED",
+        "status": "DELIVERED",
+        "attempts_made": 1,
+        "retries_performed": 0,
+        "total_backoff_ms": 0,
+        "delivered_at": "2026-11-21T03:45:29.470Z",
+        "attempt_history": [
+          {
+            "attempt": 1,
+            "timestamp": "2026-11-21T03:45:29.470Z",
+            "outcome": "DELIVERED",
+            "http_status": 202
+          }
+        ]
+      }
+    },
+    {
+      "incident": {
+        "incident_id": "inc_iot_car_04_mai",
+        "device_id": "iot_car_04",
+        "plate": "DK 3456 GH",
+        "model": "Suzuki Ertiga",
+        "status": "rented",
+        "gateway_id": "gw_kuta_01",
+        "zone": "SANUR",
+        "flags": [
+          "MAINTENANCE_REQUIRED"
+        ],
+        "highest_severity": "MEDIUM",
+        "triggers": [
+          {
+            "flag": "MAINTENANCE_REQUIRED",
+            "severity": "MEDIUM",
+            "rule": "LOW_FUEL_LEVEL",
+            "detail": "Vehicle DK 3456 GH fuel level is critically low at 9% (threshold < 15%).",
+            "recommended_action": "Send automated low-fuel advisory to renter and schedule hub refueling upon return."
+          }
+        ],
+        "telemetry_snapshot": {
+          "current_speed_kmh": 0,
+          "battery_voltage": 12.4,
+          "fuel_percent": 9,
+          "last_ping_seconds_ago": 110
+        },
+        "detected_at": "2026-11-21T03:45:29.282Z"
+      },
+      "alert_payload": {
+        "schema_version": "1.0",
+        "alert_id": "alrt_a0882ec2",
+        "idempotency_key": "dispatch:inc_iot_car_04_mai:MAINTENANCE_REQUIRED",
+        "timestamp": "2026-11-21T03:45:29.282Z",
+        "severity": "MEDIUM",
+        "flags": [
+          "MAINTENANCE_REQUIRED"
+        ],
+        "routing_channels": [
+          "ops-fleet-maintenance"
+        ],
+        "summary": "[MEDIUM] DK 3456 GH (Suzuki Ertiga) — MAINTENANCE_REQUIRED (LOW_FUEL_LEVEL)",
+        "vehicle": {
+          "device_id": "iot_car_04",
+          "plate": "DK 3456 GH",
+          "model": "Suzuki Ertiga",
+          "status": "rented",
+          "gateway_id": "gw_kuta_01",
+          "zone": "SANUR"
+        },
+        "telemetry": {
+          "current_speed_kmh": 0,
+          "battery_voltage": 12.4,
+          "fuel_percent": 9,
+          "last_ping_seconds_ago": 110
+        },
+        "triggers": [
+          {
+            "flag": "MAINTENANCE_REQUIRED",
+            "severity": "MEDIUM",
+            "rule": "LOW_FUEL_LEVEL",
+            "detail": "Vehicle DK 3456 GH fuel level is critically low at 9% (threshold < 15%).",
+            "recommended_action": "Send automated low-fuel advisory to renter and schedule hub refueling upon return."
+          }
+        ],
+        "recommended_actions": [
+          "Send automated low-fuel advisory to renter and schedule hub refueling upon return."
+        ]
+      },
+      "dispatch_result": {
+        "alert_id": "alrt_a0882ec2",
+        "incident_id": "inc_iot_car_04_mai",
+        "device_id": "iot_car_04",
+        "idempotency_key": "dispatch:inc_iot_car_04_mai:MAINTENANCE_REQUIRED",
+        "status": "DELIVERED",
+        "attempts_made": 1,
+        "retries_performed": 0,
+        "total_backoff_ms": 0,
+        "delivered_at": "2026-11-21T03:45:29.486Z",
+        "attempt_history": [
+          {
+            "attempt": 1,
+            "timestamp": "2026-11-21T03:45:29.486Z",
+            "outcome": "DELIVERED",
+            "http_status": 202
+          }
+        ]
+      }
+    },
+    {
+      "incident": {
+        "incident_id": "inc_iot_car_08_mai",
+        "device_id": "iot_car_08",
+        "plate": "DK 4567 OP",
+        "model": "Honda Brio",
+        "status": "available",
+        "gateway_id": "gw_kuta_01",
+        "zone": "KUTA_HUB",
+        "flags": [
+          "MAINTENANCE_REQUIRED"
+        ],
+        "highest_severity": "MEDIUM",
+        "triggers": [
+          {
+            "flag": "MAINTENANCE_REQUIRED",
+            "severity": "MEDIUM",
+            "rule": "LOW_BATTERY_VOLTAGE",
+            "detail": "Vehicle DK 4567 OP battery voltage dropped to 11.3V (threshold < 11.5V).",
+            "recommended_action": "Dispatch mobile roadside technician for battery/alternator inspection before vehicle stalls."
+          },
+          {
+            "flag": "MAINTENANCE_REQUIRED",
+            "severity": "MEDIUM",
+            "rule": "LOW_FUEL_LEVEL",
+            "detail": "Vehicle DK 4567 OP fuel level is critically low at 11% (threshold < 15%).",
+            "recommended_action": "Hold vehicle from dispatch until Kuta Hub crew completes refueling."
+          }
+        ],
+        "telemetry_snapshot": {
+          "current_speed_kmh": 0,
+          "battery_voltage": 11.3,
+          "fuel_percent": 11,
+          "last_ping_seconds_ago": 15
+        },
+        "detected_at": "2026-11-21T03:45:29.282Z"
+      },
+      "alert_payload": {
+        "schema_version": "1.0",
+        "alert_id": "alrt_7da21405",
+        "idempotency_key": "dispatch:inc_iot_car_08_mai:MAINTENANCE_REQUIRED",
+        "timestamp": "2026-11-21T03:45:29.282Z",
+        "severity": "MEDIUM",
+        "flags": [
+          "MAINTENANCE_REQUIRED"
+        ],
+        "routing_channels": [
+          "ops-fleet-maintenance"
+        ],
+        "summary": "[MEDIUM] DK 4567 OP (Honda Brio) — MAINTENANCE_REQUIRED (LOW_BATTERY_VOLTAGE, LOW_FUEL_LEVEL)",
+        "vehicle": {
+          "device_id": "iot_car_08",
+          "plate": "DK 4567 OP",
+          "model": "Honda Brio",
+          "status": "available",
+          "gateway_id": "gw_kuta_01",
+          "zone": "KUTA_HUB"
+        },
+        "telemetry": {
+          "current_speed_kmh": 0,
+          "battery_voltage": 11.3,
+          "fuel_percent": 11,
+          "last_ping_seconds_ago": 15
+        },
+        "triggers": [
+          {
+            "flag": "MAINTENANCE_REQUIRED",
+            "severity": "MEDIUM",
+            "rule": "LOW_BATTERY_VOLTAGE",
+            "detail": "Vehicle DK 4567 OP battery voltage dropped to 11.3V (threshold < 11.5V).",
+            "recommended_action": "Dispatch mobile roadside technician for battery/alternator inspection before vehicle stalls."
+          },
+          {
+            "flag": "MAINTENANCE_REQUIRED",
+            "severity": "MEDIUM",
+            "rule": "LOW_FUEL_LEVEL",
+            "detail": "Vehicle DK 4567 OP fuel level is critically low at 11% (threshold < 15%).",
+            "recommended_action": "Hold vehicle from dispatch until Kuta Hub crew completes refueling."
+          }
+        ],
+        "recommended_actions": [
+          "Dispatch mobile roadside technician for battery/alternator inspection before vehicle stalls.",
+          "Hold vehicle from dispatch until Kuta Hub crew completes refueling."
+        ]
+      },
+      "dispatch_result": {
+        "alert_id": "alrt_7da21405",
+        "incident_id": "inc_iot_car_08_mai",
+        "device_id": "iot_car_08",
+        "idempotency_key": "dispatch:inc_iot_car_08_mai:MAINTENANCE_REQUIRED",
+        "status": "DELIVERED",
+        "attempts_made": 1,
+        "retries_performed": 0,
+        "total_backoff_ms": 0,
+        "delivered_at": "2026-11-21T03:45:29.504Z",
+        "attempt_history": [
+          {
+            "attempt": 1,
+            "timestamp": "2026-11-21T03:45:29.504Z",
+            "outcome": "DELIVERED",
+            "http_status": 202
+          }
+        ]
+      }
+    }
+  ],
+  "dead_letter_queue": []
+}
